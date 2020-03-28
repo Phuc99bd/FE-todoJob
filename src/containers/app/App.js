@@ -13,7 +13,13 @@ axios.interceptors.request.use(config=>{
   }
   const tokenKey = localStorage.getItem('tokenKey')
   if (tokenKey) {
-    config.headers['x-access-token'] = tokenKey
+    let item = JSON.parse(tokenKey);
+    let now = new Date();
+    if(now.getTime()> item.expiry){
+      localStorage.removeItem('tokenKey')
+    }else{
+      config.headers['x-access-token'] = item.token;
+    }
   }
   return config
 })
@@ -24,7 +30,12 @@ axios.interceptors.response.use(response => {
   }
   const tokenKey = response.data?.token;
   if (tokenKey) {
-    localStorage.setItem('tokenKey', tokenKey)
+    const item = {
+      token: tokenKey,
+      expiry: 60000*60*24
+    }
+    localStorage.setItem('tokenKey', JSON.stringify(item))
+    localStorage.setItem('user', response.data.user);
   }
   return response
 }, function (error) {
@@ -33,10 +44,9 @@ axios.interceptors.response.use(response => {
 
 class App extends Component {
   render(){
-    console.log("aa");
     return (<Provider store={store}>
       <Router>
-         <Route path="/login" exact="true" component={Auth} />
+         <Route path="/login"  component={Auth} />
        </Router>
     </Provider>)
   }
