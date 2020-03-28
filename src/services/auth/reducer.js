@@ -27,6 +27,7 @@ const authReducer = (state = initialState , action) => {
         case AUTH_LOGIN_COMPLETED:
             return {...state, user: action.user,loading: false}
         case AUTH_FALTURE:
+            console.log(action);
             return {...state,loading: false, error: action.error}
         case AUTH_LOGOUT:
             return {...state, user: ''}
