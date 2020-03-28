@@ -33,9 +33,10 @@ axios.interceptors.response.use(response => {
 
 class App extends Component {
   render(){
+    console.log("aa");
     return (<Provider store={store}>
       <Router>
-         <Route path="/login" component={Auth} />
+         <Route path="/login" exact="true" component={Auth} />
        </Router>
     </Provider>)
   }

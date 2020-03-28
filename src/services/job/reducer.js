@@ -41,9 +41,9 @@ const jobReducer = (state = initialState, action) => {
         case UPDATE_JOB:
             state.arrJob.filter(i=>{
                 if(i._id === action.item._id){
-                    i = Object.assign(i,action.item) 
+                    return Object.assign(i,action.item) 
                 }
-
+                return i;
             })
             return state;
         case SORT_BY_NAME:

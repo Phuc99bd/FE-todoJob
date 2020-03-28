@@ -35,7 +35,11 @@ export const loginUser= (email,password)=>{
                 dispatch(loginSuccess(res.data.user))
             }
         }catch(err){
-
+            if (err.response){
+                dispatch(loginErr(err.response.data))
+            } else {
+                dispatch(loginErr(err))
+            }
         }
     }
 }

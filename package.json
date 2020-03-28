@@ -48,5 +48,16 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "gh-pages": "^2.2.0"
   },
-  "homepage": "http://phuc99bd.github.io/ManageUser#readme"
+  "homepage": "http://phuc99bd.github.io/FE-todoJob",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phuc99bd/FE-todoJob.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Phuc99bd/FE-todoJob/issues"
+  }
 }
