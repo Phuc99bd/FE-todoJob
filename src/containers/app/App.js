@@ -3,7 +3,11 @@ import axios from "axios";
 import { Provider } from "react-redux";
 import store from "../../services/store";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Auth from "../auth/auth";
+import Auth from "../login/auth";
+import Register from "../register/register";
+import Job from '../job/Job';
+import Logout from "../../components/auth/logout";
+import PrivateRoure from "../privateRoute";
 
 axios.defaults.baseURL = 'http://localhost:8000';
 
@@ -28,14 +32,13 @@ axios.interceptors.response.use(response => {
   if (window.location.href === '/login') {
     return response
   }
-  const tokenKey = response.data?.token;
+  const tokenKey = response.data?.token || null;
   if (tokenKey) {
     const item = {
       token: tokenKey,
-      expiry: 60000*60*24
+      expiry: new Date().getTime() +60000*60*24
     }
     localStorage.setItem('tokenKey', JSON.stringify(item))
-    localStorage.setItem('user', response.data.user);
   }
   return response
 }, function (error) {
@@ -46,8 +49,11 @@ class App extends Component {
   render(){
     return (<Provider store={store}>
       <Router>
-         <Route path="/login"  component={Auth} />
-       </Router>
+         <Route path="/login" component={Auth} />
+         <Route path="/register" component={Register} />
+         <PrivateRoure path="/" exact={true} component={Job}/>   
+         <Route path="/logout" exact={true} component={Logout}/>   
+      </Router>
     </Provider>)
   }
  

@@ -1,5 +1,7 @@
-const {useSelector} = require("react-redux")
 
-export const job = {
-    job: {...useSelector(state=>state.job),...useSelector(state=>state.auth.user)}
+const {useSelector,shallowEqual} = require("react-redux")
+
+const JobProps = ()=>{
+    return { job: {...useSelector(state=>state.job),...useSelector(state=>state.auth.user,shallowEqual)}}
 }
+export default JobProps

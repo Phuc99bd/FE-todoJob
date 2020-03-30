@@ -1,16 +1,23 @@
-import React, { Component,} from "react";
+import React, { useState,useEffect} from "react";
 import { Container, Row, Col,Alert,Spinner } from "react-bootstrap";
 import { loginUser } from "../../services/auth/action";
 import propAuth from "../../services/auth/seletor";
 import {useDispatch} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {LoginFormik} from "./formik/login";
+import getLocalStorge from "../helper/getlocalStorage";
 
 const AuthItem = () =>{
    let authProps = propAuth().auth;
    let dispatch = useDispatch();
-   
-  const submitForm = (email,password) => {
+   let [status,setStatus] = useState(false);
+
+
+   useEffect(()=>{
+    changeStatus();
+   },[])
+
+   const submitForm = (email,password) => {
     return dispatch(loginUser(email,password));
   };
 
@@ -20,12 +27,20 @@ const AuthItem = () =>{
       }
   }
 
-  if(authProps.user && authProps.user != ''){
-      return <Redirect to="/"/>
+  if(authProps.token && authProps.token !== ''){
+      return <Redirect to="/"  />
   }
-  if(localStorage.getItem('tokenKey')){
-    return <Redirect to="/"/> 
+
+  let changeStatus= async()=>{
+    let check =await getLocalStorge();
+    if(check === true){
+      setStatus(true);
+    }
   }
+  if(status){
+    return <Redirect to="/"/>
+  }
+
   const loading = ()=>{
       return (authProps.loading) ? (<Spinner animation="grow" variant="primary" />) : "Login"
   } 

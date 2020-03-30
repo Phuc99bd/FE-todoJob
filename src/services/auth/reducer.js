@@ -2,13 +2,9 @@ import {
     AUTH_LOGIN_REQUEST,
     AUTH_FALTURE,
     AUTH_LOGIN_COMPLETED,
-    AUTH_LOGOUT,
     REGISTER_COMPLETED
 } from "./actionType";
-import {
-    LOGIN,
-    REGISTER
-} from "./status";
+
 
 const initialState = {
     loading: false,
@@ -24,14 +20,11 @@ const authReducer = (state = initialState , action) => {
                 loading: true
             }
         case AUTH_LOGIN_COMPLETED:
-            return {...state, user: action.user,loading: false}
+            return {...state, token: action.token,loading: false}
         case AUTH_FALTURE:
-            console.log(action);
-            return {...state,loading: false, error: action.error}
-        case AUTH_LOGOUT:
-            return {...state, user: ''}
+            return {...state,loading: false, error: action.error,success:null}
         case REGISTER_COMPLETED:
-            return {...state,success: action.success}
+            return {...state,success: action.success,error: null}
         default: 
             return state;
     }

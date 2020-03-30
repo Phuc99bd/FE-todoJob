@@ -7,38 +7,67 @@ import {
     REGISTER_COMPLETED
 } from "./actionType";
 
-export const requestLogin = ()=>{
+const request= ()=>{
     return {
         type: AUTH_LOGIN_REQUEST
     }
 }
-export const loginErr =(error)=>{
+const Err =(error)=>{
     return {
         type: AUTH_FALTURE,
         error: error
     }
 }
-export const loginSuccess = (user)=>{
+const loginSuccess = (token)=>{
     return {
         type: AUTH_LOGIN_COMPLETED,
-        user: user
+        token: token
     }
 }
+
+const registerSuccess = ()=>{
+    return {
+        type: REGISTER_COMPLETED,
+        success: 'Đăng kí thành công.'
+    }
+}
+
 export const loginUser= (email,password)=>{
     return async dispatch=>{
         try{
-            dispatch(requestLogin())
+            dispatch(request())
             const res = await axios.post("/login",{email: email,password:password})
             if(res.data.error)
-                dispatch(loginErr(res.data.error))
+                dispatch(Err(res.data.error))
             else{
-                dispatch(loginSuccess(res.data.user))
+                dispatch(loginSuccess(res.data.token))
             }
         }catch(err){
             if (err.response){
-                dispatch(loginErr(err.response.data))
+                dispatch(Err(err.response.data))
             } else {
-                dispatch(loginErr(err))
+                dispatch(Err(err))
+            }
+        }
+    }
+}
+
+export const register = (fullname,email,password)=>{
+    return async dispatch=>{
+        try{
+            dispatch(request())
+            let res= await axios.post("/register",{name: fullname, email,password})
+            if(res.data.error){
+                dispatch(Err(res.data.error))
+            }else{
+                dispatch(registerSuccess())
+            }
+
+        }catch(err){
+            if (err.response){
+                dispatch(Err(err.response.data))
+            } else {
+                dispatch(Err(err))
             }
         }
     }

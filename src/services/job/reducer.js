@@ -7,7 +7,9 @@ import {
     SORT_BY_NAME,
     UPDATE_JOB,
     GET_JOB,
-    PAGINATION
+    PAGINATION,
+    GET_REQUEST,
+    UPDATE_COMPLETE
  } from "./actionType";
 
 let initialState = {
@@ -15,41 +17,47 @@ let initialState = {
     numOfJob: 1,
     keyword: "",
     pages: 1,
-    sortByName:0,
+    sortByName:1,
     sortByActive: 0,
-    status: false
+    status: false,
+    loading: false,
+    success: null
 }
 
 const jobReducer = (state = initialState, action) => {
-    let actionFefeshArr = {...action};
+    let actionFefeshArr = {...action.data};
+    actionFefeshArr.loading=false;
     delete actionFefeshArr.type;
     switch (action.type) {
-        case GET_JOB:
-            return Object.assign(state,actionFefeshArr);
+        case GET_JOB:              
+            return {...state,...actionFefeshArr}
+        case GET_REQUEST:
+            return {...state,loading: true}
         case SEARCH_JOB:
-            return Object.assign(state,actionFefeshArr);
+            return {...state,keyword: action.keyword}
         case ADD_JOB:
-            return {...state,arrJob: [...state.arrJob,action.item]}
+            return {...state,arrJob: [action.item,...state.arrJob]}
         case DELETE_JOB:
             return {...state,arrJob: state.arrJob.filter(i=>{
                 return i._id !== action._id
             })}
         case PAGINATION:
-            return Object.assign(state,actionFefeshArr)
+            return {...state,pages: action.pages}
         case CHANGE_STATUS:
             return {...state,status: !state.status}
         case UPDATE_JOB:
-            state.arrJob.filter(i=>{
+            state.arrJob.forEach(i=>{
                 if(i._id === action.item._id){
-                    return Object.assign(i,action.item) 
+                     i = action.item;
                 }
-                return i;
             })
-            return state;
+            return {...state};
         case SORT_BY_NAME:
-            return Object.assign(state,actionFefeshArr)
+            return {...state,sortByName: action.sortByName}
         case SORT_BY_ACTIVE:
-            return Object.assign(state,actionFefeshArr)
+            return {...state,sortByActive: action.sortByActive}
+        case UPDATE_COMPLETE:
+            return {...state,success: action.message}
         default:
             return state;
     }
