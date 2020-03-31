@@ -9,7 +9,7 @@ import Job from '../job/Job';
 import Logout from "../../components/auth/logout";
 import PrivateRoure from "../privateRoute";
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'https://chiseled-easy-poinsettia.glitch.me';
 
 axios.interceptors.request.use(config=>{
   if(window.location.href === '/login'){
