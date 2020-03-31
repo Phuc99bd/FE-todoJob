@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/FE-todoJob/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/FE-todoJob/static/js/main.dccdbf99.chunk.js",
-    "main.js.map": "/FE-todoJob/static/js/main.dccdbf99.chunk.js.map",
+    "main.js": "/FE-todoJob/static/js/main.a08c4bb1.chunk.js",
+    "main.js.map": "/FE-todoJob/static/js/main.a08c4bb1.chunk.js.map",
     "runtime-main.js": "/FE-todoJob/static/js/runtime-main.b0730373.js",
     "runtime-main.js.map": "/FE-todoJob/static/js/runtime-main.b0730373.js.map",
-    "static/js/2.d2bc92cb.chunk.js": "/FE-todoJob/static/js/2.d2bc92cb.chunk.js",
-    "static/js/2.d2bc92cb.chunk.js.map": "/FE-todoJob/static/js/2.d2bc92cb.chunk.js.map",
+    "static/js/2.82de9281.chunk.js": "/FE-todoJob/static/js/2.82de9281.chunk.js",
+    "static/js/2.82de9281.chunk.js.map": "/FE-todoJob/static/js/2.82de9281.chunk.js.map",
     "index.html": "/FE-todoJob/index.html",
-    "precache-manifest.deb4ece58727650af02d12a94d727e9a.js": "/FE-todoJob/precache-manifest.deb4ece58727650af02d12a94d727e9a.js",
+    "precache-manifest.848c9119497fe41d49d5b226e395bacf.js": "/FE-todoJob/precache-manifest.848c9119497fe41d49d5b226e395bacf.js",
     "service-worker.js": "/FE-todoJob/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/FE-todoJob/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.d2bc92cb.chunk.js.LICENSE.txt": "/FE-todoJob/static/js/2.d2bc92cb.chunk.js.LICENSE.txt"
+    "static/js/2.82de9281.chunk.js.LICENSE.txt": "/FE-todoJob/static/js/2.82de9281.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b0730373.js",
-    "static/js/2.d2bc92cb.chunk.js",
+    "static/js/2.82de9281.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.dccdbf99.chunk.js"
+    "static/js/main.a08c4bb1.chunk.js"
   ]
 }
